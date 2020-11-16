@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/factImageFull"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/factId"
+        android:id="@+id/factText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
