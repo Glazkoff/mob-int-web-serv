@@ -40,13 +40,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FactDetail fact = list.get(position);
         holder.factIdText.setText("Cat Fact #"+fact._id);
+        holder.aboutFactText.setText("Upvotes: "+fact.upvotes);
         int rand = (int) Math.ceil(Math.random()*1000);
         Log.d(TAG, "onBindViewHolder: ");
         Glide.with(context).load("https://picsum.photos/id/"+rand+"/400/400").into(holder.factImage);
         holder.item.setOnClickListener(v -> {
             Intent intent = new Intent(context, FactActivity.class);
             intent.putExtra("factid", fact._id);
-//            intent.putExtra("factid", "591d9b2f227c1a0020d26823");
             context.startActivity(intent);
         });
     }
@@ -60,12 +60,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         ImageView factImage;
         TextView factIdText;
+        TextView aboutFactText;
         LinearLayout item;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             factImage = itemView.findViewById(R.id.factImage);
             factIdText = itemView.findViewById(R.id.factIdText);
+            aboutFactText = itemView.findViewById(R.id.aboutFactText);
             item = itemView.findViewById(R.id.item);
         }
     }

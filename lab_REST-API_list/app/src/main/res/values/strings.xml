@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab1</string>
-    <string name="subtitle">From cats-facts-api</string>
+    <string name="app_name">REST API CLIENT</string>
+    <string name="subtitle">From cats-facts-api with random photo</string>
     <string name="title">CATS FACTS</string>
 </resources>

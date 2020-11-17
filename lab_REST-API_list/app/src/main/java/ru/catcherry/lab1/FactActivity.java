@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class FactActivity extends AppCompatActivity {
-
+    TextView factHeader;
     TextView factText;
     TextView factBody;
     ImageView factImageFull;
@@ -26,19 +26,20 @@ public class FactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fact);
+        factHeader = findViewById(R.id.factHeader);
         factText = findViewById(R.id.factText);
         factBody = findViewById(R.id.factBody);
         factImageFull = findViewById(R.id.factImageFull);
         api = ApiConfiguration.getApi();
         disposables = new CompositeDisposable();
         if (getIntent().getExtras() != null){
-            Log.d("!!!", "onCreate: " + getIntent().getStringExtra("factid"));
             disposables.add(
                     api.fact(getIntent().getStringExtra("factid"))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     (fact) -> {
+                                        factHeader.setText("Random cat fact #"+fact._id);
                                         factBody.setText(fact.text);
                                         int rand = (int) Math.ceil(Math.random()*1000);
                                         Glide.with(this).load("https://picsum.photos/id/"+rand+"/800/800").into(factImageFull);
